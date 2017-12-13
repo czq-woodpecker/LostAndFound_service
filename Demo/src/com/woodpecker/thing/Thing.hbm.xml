@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.woodpecker.thing.Thing" table="thing">
+		<!-- 配置唯一的标识 -->
+		<id name="tid">
+			<generator class="native"/>
+		</id>
+		<!-- 配置通用属性 -->
+		<property name="ttype" />
+		<property name="tname" />
+		<property name="tplace" />
+		<property name="tfeature" />
+		<property name="tphoto" />
+		<property name="tstate" />
+		<property name="tbelong" />
+		<property name="tphone" />
+		
+		<!-- 相关用户的对象 -->
+		<many-to-one name="user" class="com.woodpecker.user.User" column="uid"></many-to-one>
+		
+	</class>
+</hibernate-mapping>
+ 

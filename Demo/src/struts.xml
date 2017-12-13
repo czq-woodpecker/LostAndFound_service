@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+        <!-- 临时目录 -->
+        <constant name="struts.multipart.saveDir" value="/upload"/>
+        
+        <!-- 配置接收文件的Action -->
+        <package name ="fileUploadDemo" extends ="struts-default">    
+        	<action name ="fileUpload" class ="com.woodpecker.upload.UploadAction">
+	        	<param name="savePath">/upload</param>        
+	        	<result name ="success">/index.jsp</result>    
+        	</action >
+        </package >
+
+    
+    <!-- 使用struts2  配置来实现 返回Json数据 -->
+    <package name="json" extends="struts-default,json-default"  namespace="/">
+        <global-results>
+            <result name="error">/Error.jsp</result>
+        </global-results>
+        
+
+        
+
+	
+		
+
+        
+        
+        <!-- 配置用户的Action -->
+    	<action name="user_*" class="userAction" method="{1}">
+    		<result name="loginSuccess" type="json" >  
+                   <param name="root">userLoginJson</param>  
+            </result>  
+            <result name="registerSuccess" type="json" >  
+                   <param name="root">userRegisterJson</param>  
+            </result> 
+            <result name="updateInfoSuccess" type="json">
+            	 <param name="root">resultJson</param>
+            </result>
+            <result name="findByUsernameSuccess" type="json">
+            	 <param name="root">resultJson</param>
+            </result>
+            
+            
+         
+
+    	</action>
+    	
+    	<!-- 配置物品的Action -->
+    	<action name="thing_*" class="thingAction" method="{1}">
+    		<result name="findAllLostSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>  
+            <result name="findAllFoundSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="findLostByTypeSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="findFoundByTypeSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="findByIdSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="addSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="updateSuccess" type="json" >  
+                   <param name="root">resultJson</param>  
+            </result>
+            <result name="findByTypeSuccess" type="json">
+            	<param name="root">resultJson</param>
+            </result>
+            <result name="findAllThingByBelongSuccess" type="json">
+            	<param name="root">resultJson</param>
+            </result>
+            
+    	</action>
+    	
+    	<!-- 配置物品图片的Action /thingimage/{1}.png-->
+    	<action name="thingimage_*">         
+            <result>/upload/{1}.jpg</result>
+    	</action>
+    	
+    	<!-- 配置用户头像的Action -->
+    	<action name="usericon_*" class="userAction" method="usericon" >
+            <result>/upload/{1}.jpg</result>
+    	</action>
+        
+        
+
+    </package>
+</struts>
